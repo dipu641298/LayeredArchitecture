@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LayeredArchitecture.Business\LayeredArchitecture.Business.csproj" />
+    <ProjectReference Include="..\LayeredArchitecture.DataAccess\LayeredArchitecture.DataAccess.csproj" />
+    <ProjectReference Include="..\LayeredArchitecture.Domain\LayeredArchitecture.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
