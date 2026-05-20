@@ -9,7 +9,7 @@ public class DisburseLoanUseCase
 {
     private readonly ILoanRepository _repository;
     private readonly IBankTransferClient _bankClient;
-    private readonly DisbursementCalculatorService _calculator;
+    private readonly DisbursementCalculatorService _calculatorService;
 
     public DisburseLoanUseCase(
         ILoanRepository repository,
@@ -18,7 +18,7 @@ public class DisburseLoanUseCase
     {
         _repository = repository;
         _bankClient = bankClient;
-        _calculator = calculator;
+        _calculatorService = calculator;
     }
 
     public async Task<bool> ExecuteAsync(Guid loanId)
@@ -29,7 +29,7 @@ public class DisburseLoanUseCase
             throw new ArgumentException("Loan not found.");
 
         // 2. Delegate to Business Layer to calculate actual payout
-        decimal payoutAmount = _calculator.CalculatePayoutAmount(loan);
+        decimal payoutAmount = _calculatorService.CalculatePayoutAmount(loan);
 
         // 3. I/O: Attempt to wire the funds
         bool transferSuccess = await _bankClient.WireFundsAsync(loan.CustomerId, payoutAmount);
